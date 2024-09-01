@@ -1,0 +1,128 @@
+# 1
+print("1st programme", "\n")
+for i in range(5, 0, -1):
+    for j in range(1, i + 1):
+        print(j, end=" ")
+    print(" ")
+print("\n")
+
+# 2
+print("2nd programme", "\n")
+n = 1
+for i in range(1, 5):
+    for j in range(1, i + 1):
+        print(n, end=" ")
+        n += 1
+    print(" ")
+print("\t")
+
+# 3
+print("3rd programme", "\n")
+var = 10
+for i in range(10):
+    for j in range(2, 10, 1):
+        if var % 2 == 0:
+            continue
+            var += 1
+        var += 1
+    else:
+        var += 1
+        print(var)
+print("\n")
+
+# 4
+print("4th programme", "\n")
+for n in range(10, 14):
+    for i in range(2, n):
+        if n % i == 1:
+            print(n)
+            break
+print("\n")
+
+# 5
+print("5th programme", "\n")
+a, b = 1, 1
+if a + b:
+    print("true")
+else:
+    print("false")
+print("\n")
+
+# 6
+print("6th programme", "\n")
+x = 0
+a = 5
+b = 5
+if a > 0:
+    if b < 0:
+        x = x + 5
+    elif a > 5:
+        x = x + 4
+    else:
+        x = x + 3
+else:
+    x = x + 2
+print(x)
+
+print("\n")
+
+# 7
+print("7th programme", "\n")
+for num in range(2, -5, -1):
+    print(num, end=",")
+print("\n")
+
+# 8
+print("8th programme", "\n")
+x = -3
+if x:
+    print("true")
+else:
+    print("false")
+print("\n")
+
+# 9
+print("9th programme", "\n")
+x = 0
+while x < 100:
+    x += 2
+print(x)
+print("\n")
+
+# 10
+print("10th programme", "\n")
+num = [10, 20]
+items = ["chair", "table"]
+for x in num:
+    for y in items:
+        print(x, y)
+print("\n")
+
+# 11
+print("11th programme", "\n")
+for i in "Jhon":
+    if i == "o":
+        pass
+    print(i, end=",")
+print("\n")
+
+# 12
+print("12th programme", "\n")
+for i in (1, 5, 6):
+    for j in range(1, 5):
+        if i == j:
+            print(i - 1)
+            break
+        else:
+            print(j - 1)
+print("\n")
+
+# 13
+print("13th programme", "\n")
+for i in range(6, 10, 2):
+    for j in (5, 4, 8):
+        if j != i:
+            print(j)
+else:
+    print(i**2)
+print("\n")
