@@ -30,8 +30,8 @@ if anything_else == 'Yes'or'yes':
     if Item_2 in menu:
         order_total+=menu[Item_2]
         print('Your Item',Item_2,'added to order')
-else:
-    print('Please order somthing from menu')
+    else:
+        print('Please order somthing from menu')
 
 print('You have to pay',order_total)
 print('Thanks for visiting')
