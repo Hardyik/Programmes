@@ -1,65 +1,172 @@
-#Basic Project1
-#item in menu
-menu={
-    'chai':8,
-    'vada pav':15,
-    'samosa':18,
-    'sada dosa':45,
-    'masala dosa':50,
-    'pizza':60,
-    'veg momo':40,
-    'chiken momo':60,
-    'veg burger':40,
-    'chicken burger':60,
-    'chiken biryani':100,
-    'mutton biryani':150,
-    'egg biryani':90,
-    'veg biryani':85,
-    'chicken 65':120,
-    'chiken lolipop':100,
-    'paneer 65':90,
-    'paneer chili':90,
-    'chiken chili':125,
-    'vanilla':20,
-    'chocolate':20,
-    'strawberry':20,
-    'mango':20,
-    'pineapple':20
+#Basic Project1 HOTEL MENU
+import datetime
+
+# ------------------ MENU ------------------ #
+menu = {
+    # Nashta
+    "chai": 10,
+    "vada pav": 20,
+    "samosa": 20,
+    "sada dosa": 35,
+    "masala dosa": 45,
+    "pohe":20,
+    "mendu vada":30,
+
+    # Veg Main Course
+    "veg biryani": 85,
+    "veg bambu biryani":150,
+    "veg schezwan rice": 100,
+    "veg triple rice": 120,
+
+    # Non-Veg Main Course
+    "chicken biryani": 120,
+    "mutton biryani": 150,
+    "egg biryani": 90,
+    "bambu biryani": 180,
+    
+    #starter
+    "paneer 65": 90,
+    "paneer chili": 90,
+    "chicken 65": 120,
+    "chicken lolipop": 100,
+    "chicken chili": 125,
+    
+    # Fast Food
+    "pizza": 60,
+    "veg burger": 50,
+    "veg momo": 60,
+    "paneer chili": 90,
+    "chicken burger": 60,
+    "chicken momo": 80,
+
+    # Dessert
+    "vanilla": 20,
+    "chocolate": 20,
+    "strawberry": 20,
+    "mango": 20,
+    "pineapple": 20
 }
 
-print('Welcome to Hotel Annpurna.\n          Menu')#hotel name
-#printing all items in menu
-print("         Nashata\n\n    Chai Rs:5\n    Vada pav Rs:15\n    Samosa Rs:20\n    Sada Dosa Rs:30\n    Masala Dosa Rs:40\n\n        starters\n     (veg and non-veg)\n    paneer chili Rs:90\n    paneer 65 Rs:90\n    chiken lolipop Rs:100\n    chiken chili Rs:125\n    chiken 65 Rs:120\n\n          Rice\n    (veg and non-veg)\n\n    chiken biryani Rs:100\n    mutton biryani Rs:150\n    egg biryani Rs:90\n    veg biryani Rs:85\n\n        Fast food\n    (veg and non-veg)\n\n    pizza Rs:60\n    veg momo Rs:40\n    veg burger Rs:40\n    chiken momo Rs:60\n    chicken burger Rs:60\n\n        Dessert\n    vanilla Rs:20\n    chocolate Rs:20\n    strawberry Rs:20\n    mango Rs:20\n    pineapple Rs:20\n\n")
+# ------------------ CUSTOMER DETAILS ------------------ #
+print("\n====================================")
+print("        WELCOME TO HOTEL ANNPURNA")
+print("====================================\n")
 
-order_total=0 #to add item prize
-#Order
+customer_name = input("Enter Customer Name: ").title()
+
+now = datetime.datetime.now()
+date = now.strftime("%d-%m-%Y")
+time = now.strftime("%I:%M %p")
+
+# ------------------ MENU CATEGORIES ------------------ #
+menu_categories = {
+    "🍵 NASHTA": [
+        "chai", "vada pav", "samosa", "sada dosa",
+        "masala dosa", "pohe", "mendu vada"
+    ],
+
+    "🥦 VEG MAIN COURSE": [
+        "veg biryani", "veg bambu biryani",
+        "veg schezwan rice", "veg triple rice"
+    ],
+
+    "🍗 NON-VEG MAIN COURSE": [
+        "chicken biryani", "mutton biryani",
+        "egg biryani", "bambu biryani"
+    ],
+
+    "🔥 STARTERS": [
+        "paneer 65", "paneer chili",
+        "chicken 65", "chicken lolipop",
+        "chicken chili"
+    ],
+
+    "🍕 FAST FOOD": [
+        "pizza", "veg burger", "veg momo",
+        "chicken burger", "chicken momo"
+    ],
+
+    "🍨 DESSERT": [
+        "vanilla", "chocolate", "strawberry",
+        "mango", "pineapple"
+    ]
+}
+
+# ------------------ DISPLAY MENU ------------------ #
+print("\n--------------- MENU ---------------")
+
+for category, items in menu_categories.items():
+    print(f"\n{category}")
+    for item in items:
+        print(f"{item.title():25} Rs {menu[item]}")
+
+print("------------------------------------\n")
+
+
+# ------------------ ORDER SECTION ------------------ #
+order_total = 0
+ordered_items = {}
+
 while True:
-    #item 1
-    item_1=input('Plese enter Your order here. (one at a time): ').lower()
-    print('if you are done with your order then type "done".')
-    if item_1 == 'done'.lower():
-        break
-    elif item_1 in menu:
-        order_total += menu[item_1]
-        print('Your item',item_1,'added to order.\n')
-    else:
-        print('Please order somthing from menu.\n')
+    user_input = input("Enter item (or item + quantity) or type 'done': ").lower()
 
-#anything_else
-anything_else=input('Do you want anything else? (Yes/No)')
-if anything_else == 'Yes'.lower():
-    #item 2
-    while True:
-        Item_2=input('Please enter your order. (here one at a time): ').lower()
-        print('if you are done with your order then type "done".')
-        if Item_2 == 'done'.lower():
-            break
-        elif Item_2 in menu:
-            order_total+=menu[Item_2]
-            print('Your Item',Item_2,'added to order.\n')
+    if user_input == "done":
+        break
+
+    parts = user_input.split()
+
+    try:
+        # If user gives only item name → default quantity = 1
+        if len(parts) == 1:
+            item = parts[0]
+            qty = 1
+
+        # If user gives item + quantity
         else:
-            print('Please order somthing from menu.\n')
-else:
-    print(end='')
-print('\nYour total bill is',order_total)
-print('Thank you for visiting')
+            item = " ".join(parts[:-1])
+            qty = int(parts[-1])
+
+        if item in menu and qty > 0:
+            total_price = menu[item] * qty
+            order_total += total_price
+
+            if item in ordered_items:
+                ordered_items[item] += qty
+            else:
+                ordered_items[item] = qty
+
+            print(f"✔ {item.title()} x{qty} added | Rs {total_price}\n")
+
+        else:
+            print("❌ Item not available or invalid quantity.\n")
+
+    except ValueError:
+        print("⚠ Invalid format! Example: pizza 2 OR chai\n")
+
+
+# ------------------ INVOICE ------------------ #
+print("\n\n====================================")
+print("             INVOICE")
+print("====================================")
+print(f"Customer Name : {customer_name}")
+print(f"Date          : {date}")
+print(f"Time          : {time}")
+print("------------------------------------")
+
+for item, qty in ordered_items.items():
+    price = menu[item]
+    total = price * qty
+    print(f"{item.title():20} x{qty:<3} Rs {total}")
+
+print("------------------------------------")
+
+gst = order_total * 0.05
+grand_total = order_total + gst
+
+print(f"Subtotal      : Rs {order_total}")
+print(f"GST (5%)      : Rs {gst:.2f}")
+print(f"Grand Total   : Rs {grand_total:.2f}")
+print("====================================")
+print("Thank You! Visit Again.")
+
+
